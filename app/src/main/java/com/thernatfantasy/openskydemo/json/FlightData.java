@@ -1,5 +1,8 @@
 package com.thernatfantasy.openskydemo.json;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import com.thernatfantasy.openskydemo.State;
 import java.util.List;
 
 /**
@@ -16,15 +19,18 @@ public class FlightData {
         return time;
     }
 
-    public void setTime(int time) {
-        this.time = time;
+
+
+    public List<State> getStates() {
+        Function<String[],State> toUsefulState = new Function<String[], State>() {
+
+            @Override
+            public State apply(String[] state) {
+                return new State(state[0],state[1],state[2]);
+            }
+        };
+        return Lists.transform(states,toUsefulState);
     }
 
-    public List<String[]> getStates() {
-        return states;
-    }
 
-    public void setStates(List<String[]> states) {
-        this.states = states;
-    }
 }

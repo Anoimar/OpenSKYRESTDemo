@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<FlightData>() {
             @Override
             public void onResponse(Call<FlightData> call, Response<FlightData> response) {
-                Log.i(LOGGING_TAG,"Successfully acquired flight data.");
+                Log.i(LOGGING_TAG,response.body().getStates().get(0).toString());
             }
 
             @Override
