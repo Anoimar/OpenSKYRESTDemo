@@ -32,7 +32,9 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
     @Override
     public void onBindViewHolder(FlightStatesViewHolder holder, int position) {
         UsefulState flightState = flightsStates.get(position);
-        holder.icao24TextView.setText(flightState.getIcao24());
+        holder.tvIcao24.setText(flightState.getIcao24());
+        holder.tvCallsign.setText(flightState.getCallSign());
+        holder.tvCountryOfOrigin.setText(flightState.getOriginCountry());
     }
 
     @Override
@@ -41,12 +43,15 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
     }
 
     public class FlightStatesViewHolder extends RecyclerView.ViewHolder{
-        TextView icao24TextView;
+        TextView tvIcao24;
+        TextView tvCallsign;
+        TextView tvCountryOfOrigin;
 
         public FlightStatesViewHolder(View view) {
             super(view);
-            icao24TextView = (TextView) view.findViewById(R.id.icao24);
-
+            tvIcao24 = (TextView) view.findViewById(R.id.tv_icao24);
+            tvCallsign = (TextView) view.findViewById(R.id.tv_callsign);
+            tvCountryOfOrigin = (TextView) view.findViewById(R.id.tv_country_of_origin);
         }
     }
 }

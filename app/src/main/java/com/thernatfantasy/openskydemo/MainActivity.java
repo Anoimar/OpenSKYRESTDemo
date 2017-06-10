@@ -30,23 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         createEmptyFlightStatesAdapter();
         createRecyclerView();
-        OpenSkyService openSkyService = OpenSkyService.retrofit.create(OpenSkyService.class);
-        Call<FlightData> call = openSkyService.flightData();
-        call.enqueue(new Callback<FlightData>() {
-            @Override
-            public void onResponse(Call<FlightData> call, Response<FlightData> response) {
-                flightStatesList.clear();
-                flightStatesList.addAll(response.body().getUsefulStates());
-                flightStatesAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onFailure(Call<FlightData> call, Throwable t) {
-                Log.e(LOGGING_TAG,"Couldn't get flight data."+t.getMessage());
-            }
-        });
-
+        requestDataFromOpenSkyService();
     }
 
     private void createEmptyFlightStatesAdapter() {
@@ -58,5 +42,23 @@ public class MainActivity extends AppCompatActivity {
         flightStateRecyclerView = (RecyclerView)findViewById(R.id.flight_data_recycler_view);
         flightStateRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         flightStateRecyclerView.setAdapter(flightStatesAdapter);
+    }
+
+    private void requestDataFromOpenSkyService() {
+        OpenSkyService openSkyService = OpenSkyService.retrofit.create(OpenSkyService.class);
+        Call<FlightData> call = openSkyService.flightData();
+        call.enqueue(new Callback<FlightData>() {
+            @Override
+            public void onResponse(Call<FlightData> call, Response<FlightData> response) {
+                flightStatesList.clear();
+                flightStatesList.addAll(response.body().getUsefulStates());
+                flightStatesAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<FlightData> call, Throwable t) {
+                Log.e(LOGGING_TAG,"Couldn't get flight data."+t.getMessage());
+            }
+        });
     }
 }
