@@ -9,6 +9,7 @@ before_script:
   - yum --quiet update -y
   - yum --quiet -y install java-1.8.0-openjdk-devel
   - yum --quiet install -y glibc.i686 zlib.i686 libstdc++.i686 ncurses-libs.i686
+  - yum --quiet install -y wget
   - wget --quiet --output-document=android-sdk.tgz https://dl.google.com/android/android-sdk_r${ANDROID_SDK_TOOLS}-linux.tgz  
   - tar --extract --gzip --file=android-sdk.tgz
   - echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter android-${ANDROID_TARGET_SDK}
