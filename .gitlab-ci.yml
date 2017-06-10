@@ -18,6 +18,7 @@ before_script:
   - echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-android-m2repository
   - echo y | android-sdk-linux/tools/android --silent update sdk --no-ui --all --filter extra-google-m2repository
   - export ANDROID_HOME=$PWD/android-sdk-linux
+  - export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk
   - chmod +x ./gradlew
 
 build:
