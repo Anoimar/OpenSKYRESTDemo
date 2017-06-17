@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createEmptyFlightStatesAdapter() {
         flightStatesList = new ArrayList<>();
-        flightStatesAdapter = new FlightStateRecyclerViewAdapter(flightStatesList);
+        flightStatesAdapter = new FlightStateRecyclerViewAdapter(this,flightStatesList);
     }
 
     private void createRecyclerView() {
