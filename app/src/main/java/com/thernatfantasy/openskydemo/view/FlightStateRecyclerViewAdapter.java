@@ -48,7 +48,7 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
 
     private void setCountryImage(String originCountry, ImageView ivCountryFlag) {
         Picasso.with(context).load(countryFlagUrlProvider.getCountryFlagUrl(originCountry))
-                .placeholder(android.R.drawable.ic_menu_search).error(android.R.drawable.stat_notify_error).into(ivCountryFlag);
+                .placeholder(android.R.drawable.ic_menu_search).error(android.R.drawable.ic_dialog_alert).into(ivCountryFlag);
     }
 
     @Override
