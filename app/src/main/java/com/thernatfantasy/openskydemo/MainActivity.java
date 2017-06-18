@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-
 import com.thernatfantasy.openskydemo.json.FlightData;
 import com.thernatfantasy.openskydemo.view.FlightStateRecyclerViewAdapter;
-
-
 import java.util.ArrayList;
-import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,17 +15,27 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private static final String LOGGING_TAG = "MAIN_ACTIVITY";
+    private static final String LAST_SAVED_FLIGHT_STATES = "saved_flights";
     private RecyclerView flightStateRecyclerView;
-    private RecyclerView.Adapter flightStatesAdapter;
-    private List<UsefulState> flightStatesList;
+    private FlightStateRecyclerViewAdapter flightStatesAdapter;
+    private ArrayList<UsefulState> flightStatesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        createRecyclerViewWithFlightData(savedInstanceState);
+
+    }
+
+    private void createRecyclerViewWithFlightData(Bundle savedInstanceState) {
         createEmptyFlightStatesAdapter();
         createRecyclerView();
-        requestDataFromOpenSkyService();
+        if(savedInstanceState == null) {
+            requestDataFromOpenSkyService();
+        }else{
+            restoreFlightStateList(savedInstanceState);
+        }
     }
 
     private void createEmptyFlightStatesAdapter() {
@@ -50,9 +55,8 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<FlightData>() {
             @Override
             public void onResponse(Call<FlightData> call, Response<FlightData> response) {
-                flightStatesList.clear();
-                flightStatesList.addAll(response.body().getUsefulStates());
-                flightStatesAdapter.notifyDataSetChanged();
+                flightStatesAdapter.refreshFlightList(response.body().getUsefulStates());
+
             }
 
             @Override
@@ -60,5 +64,18 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(LOGGING_TAG,"Couldn't get flight data."+t.getMessage());
             }
         });
+    }
+
+    private void restoreFlightStateList(Bundle savedInstanceState){
+        ArrayList<UsefulState> savedFlightStatesList = savedInstanceState.getParcelableArrayList(LAST_SAVED_FLIGHT_STATES);
+        Log.e("SIZE","loaded "+savedFlightStatesList.size());
+        flightStatesAdapter.refreshFlightList(savedFlightStatesList);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.e("SIZE","saving "+flightStatesList.size());
+        outState.putParcelableArrayList(LAST_SAVED_FLIGHT_STATES,flightStatesList);
     }
 }

@@ -2,7 +2,6 @@ package com.thernatfantasy.openskydemo.view;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,5 +70,11 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
             ivCountryFlag = (ImageView) view.findViewById(R.id.iv_country_flag);
 
         }
+    }
+
+    public void refreshFlightList(List<UsefulState> usefulStates){
+        flightsStates.clear();
+        flightsStates.addAll(usefulStates);
+        notifyDataSetChanged();
     }
 }
