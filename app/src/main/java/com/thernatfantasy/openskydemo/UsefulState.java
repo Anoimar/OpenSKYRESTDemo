@@ -1,11 +1,13 @@
 package com.thernatfantasy.openskydemo;
 
+import android.arch.persistence.room.Entity;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * Created by mariuszrafalski on 03.05.2017.
  */
+
 
 public class UsefulState implements Parcelable {
     private String icao24;
