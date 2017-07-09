@@ -7,26 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
+import com.thernatfantasy.openskydemo.FlightInfo;
 import com.thernatfantasy.openskydemo.R;
-import com.thernatfantasy.openskydemo.UsefulState;
 import com.thernatfantasy.openskydemo.countries.CountryFlagUrlProvider;
+
+
 import java.util.List;
 
 /**
  * Created by mariuszrafalski on 04.06.2017.
  */
 
-public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightStateRecyclerViewAdapter.FlightStatesViewHolder>{
+public class FlightInfoRecyclerViewAdapter extends RecyclerView.Adapter<FlightInfoRecyclerViewAdapter.FlightStatesViewHolder>{
 
-
-    private List<UsefulState> flightsStates;
+    private List<FlightInfo> flightInfos;
     private Context context;
     private CountryFlagUrlProvider countryFlagUrlProvider = new CountryFlagUrlProvider();
 
-    public FlightStateRecyclerViewAdapter(Context context,List<UsefulState> flightsStates) {
-        this.flightsStates = flightsStates;
+    public FlightInfoRecyclerViewAdapter(Context context, List<FlightInfo> flightInfos) {
+        this.flightInfos = flightInfos;
         this.context = context;
     }
 
@@ -38,7 +38,7 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
 
     @Override
     public void onBindViewHolder(FlightStatesViewHolder holder, int position) {
-        UsefulState flightState = flightsStates.get(position);
+        FlightInfo flightState = flightInfos.get(position);
         holder.tvIcao24.setText(flightState.getIcao24());
         holder.tvCallsign.setText(flightState.getCallSign());
         holder.tvCountryOfOrigin.setText(flightState.getOriginCountry());
@@ -52,7 +52,7 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
 
     @Override
     public int getItemCount() {
-        return flightsStates.size();
+        return flightInfos.size();
     }
 
     public class FlightStatesViewHolder extends RecyclerView.ViewHolder{
@@ -68,13 +68,12 @@ public class FlightStateRecyclerViewAdapter extends RecyclerView.Adapter<FlightS
             tvCallsign = (TextView) view.findViewById(R.id.tv_callsign);
             tvCountryOfOrigin = (TextView) view.findViewById(R.id.tv_country_of_origin);
             ivCountryFlag = (ImageView) view.findViewById(R.id.iv_country_flag);
-
         }
     }
 
-    public void refreshFlightList(List<UsefulState> usefulStates){
-        flightsStates.clear();
-        flightsStates.addAll(usefulStates);
+    public void refreshFlightList(List<FlightInfo> flightInfos){
+        this.flightInfos = flightInfos;
         notifyDataSetChanged();
     }
+
 }
