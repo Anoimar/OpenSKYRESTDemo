@@ -42,6 +42,7 @@ public class FlightInfoRecyclerViewAdapter extends RecyclerView.Adapter<FlightIn
         holder.tvIcao24.setText(flightState.getIcao24());
         holder.tvCallsign.setText(flightState.getCallSign());
         holder.tvCountryOfOrigin.setText(flightState.getOriginCountry());
+        holder.tvTime.setText(flightState.getTime()+"");
         setCountryImage(flightState.getOriginCountry(),holder.ivCountryFlag);
     }
 
@@ -59,6 +60,7 @@ public class FlightInfoRecyclerViewAdapter extends RecyclerView.Adapter<FlightIn
         TextView tvIcao24;
         TextView tvCallsign;
         TextView tvCountryOfOrigin;
+        TextView tvTime;
         ImageView ivCountryFlag;
 
 
@@ -67,6 +69,7 @@ public class FlightInfoRecyclerViewAdapter extends RecyclerView.Adapter<FlightIn
             tvIcao24 = (TextView) view.findViewById(R.id.tv_icao24);
             tvCallsign = (TextView) view.findViewById(R.id.tv_callsign);
             tvCountryOfOrigin = (TextView) view.findViewById(R.id.tv_country_of_origin);
+            tvTime = (TextView)view.findViewById(R.id.tv_time);
             ivCountryFlag = (ImageView) view.findViewById(R.id.iv_country_flag);
         }
     }

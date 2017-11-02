@@ -25,7 +25,6 @@ public class MainActivity extends LifecycleActivity {
     private List<FlightInfo> flightInfoList;
     private FlightDataListModel viewModel;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

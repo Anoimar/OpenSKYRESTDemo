@@ -23,7 +23,6 @@ public class FlightDataListModel extends AndroidViewModel {
         super(application);
 
         flightDatabase = FlightDatabase.getDatabase(this.getApplication());
-
         flightInfoList = flightDatabase.flightInfoDao().getAllFlightInfo();
 
     }

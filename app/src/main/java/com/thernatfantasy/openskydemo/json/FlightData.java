@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.thernatfantasy.openskydemo.FlightInfo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public class FlightData {
 
     private List<String[]> states;
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -27,11 +28,17 @@ public class FlightData {
 
             @Override
             public FlightInfo apply(String[] state) {
-                return new FlightInfo(state[0],state[1],state[2]);
+                return new FlightInfo(state[0],state[1],state[2],new Date(time*1000L));
             }
         };
         return Lists.transform(states,toFlightInfo);
     }
 
-
+    @Override
+    public String toString() {
+        return "FlightData{" +
+                "time=" + time +
+                ", states=" + states +
+                '}';
+    }
 }

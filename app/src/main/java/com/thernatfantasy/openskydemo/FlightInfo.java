@@ -2,6 +2,11 @@ package com.thernatfantasy.openskydemo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+
+import com.thernatfantasy.openskydemo.database.DateConverter;
+
+import java.util.Date;
 
 /**
  * Created by mariuszrafalski on 03.05.2017.
@@ -15,20 +20,16 @@ public class FlightInfo {
     private String icao24;
     private String callSign;
     private String originCountry;
+    @TypeConverters(DateConverter.class)
+    private Date time;
 
-    @Ignore
-    public FlightInfo(String icao24, String callSign, String originCountry) {
+    public FlightInfo(String icao24, String callSign, String originCountry, Date time) {
         this.icao24 = icao24;
         this.callSign = callSign;
         this.originCountry = originCountry;
+        this.time = time;
     }
 
-    public FlightInfo(int id, String icao24, String callSign, String originCountry) {
-        this.id = id;
-        this.icao24 = icao24;
-        this.callSign = callSign;
-        this.originCountry = originCountry;
-    }
 
     public String getIcao24() {
         return icao24;
@@ -50,12 +51,20 @@ public class FlightInfo {
         this.id = id;
     }
 
+    public Date getTime() {
+        return time;
+    }
+
     @Override
     public String toString() {
         return "FlightInfo{" +
-                "icao24='" + icao24 + '\'' +
+                "id=" + id +
+                ", icao24='" + icao24 + '\'' +
                 ", callSign='" + callSign + '\'' +
                 ", originCountry='" + originCountry + '\'' +
+                ", time=" + time +
                 '}';
     }
+
+
 }
