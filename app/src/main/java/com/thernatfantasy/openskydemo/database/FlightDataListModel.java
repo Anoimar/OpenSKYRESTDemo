@@ -4,10 +4,14 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.thernatfantasy.openskydemo.FlightInfo;
+import com.thernatfantasy.openskydemo.utils.TimeProvider;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by mariuszrafalski on 25.06.2017.
@@ -23,9 +27,9 @@ public class FlightDataListModel extends AndroidViewModel {
         super(application);
 
         flightDatabase = FlightDatabase.getDatabase(this.getApplication());
-        flightInfoList = flightDatabase.flightInfoDao().getAllFlightInfo();
-
+        flightInfoList = flightDatabase.flightInfoDao().getFiveHundredMostRecentFlightInfosNotOlderThan(String.valueOf(new TimeProvider().getTimeOneHourAgo()));
     }
+
 
     public LiveData<List<FlightInfo>> getFlightInfoList() {
         return flightInfoList;

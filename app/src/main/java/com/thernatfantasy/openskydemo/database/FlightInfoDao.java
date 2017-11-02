@@ -20,8 +20,8 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 @TypeConverters(DateConverter.class)
 public interface FlightInfoDao {
 
-    @Query("select * from FlightInfo")
-    LiveData<List<FlightInfo>> getAllFlightInfo();
+    @Query("select * from FlightInfo WHERE time >= :timeThreshold ORDER BY time DESC LIMIT 500")
+    LiveData<List<FlightInfo>> getFiveHundredMostRecentFlightInfosNotOlderThan(String timeThreshold);
 
     @Insert(onConflict = REPLACE)
     void addFlightInfo(FlightInfo flightInfo);
