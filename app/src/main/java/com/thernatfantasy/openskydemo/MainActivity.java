@@ -45,7 +45,7 @@ public class MainActivity extends LifecycleActivity {
     }
 
     private void createRecyclerView() {
-        flightInfoRecyclerView = (RecyclerView)findViewById(R.id.flight_data_recycler_view);
+        flightInfoRecyclerView = findViewById(R.id.flight_data_recycler_view);
         flightInfoRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         flightInfoRecyclerView.setAdapter(flightInfoRecyclerViewAdapter);
         viewModel = ViewModelProviders.of(this).get(FlightDataListModel.class);
