@@ -2,7 +2,7 @@ package com.thernatfantasy.openskydemo.json;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
-import com.thernatfantasy.openskydemo.FlightInfo;
+import com.thernatfantasy.openskydemo.database.FlightInfo;
 
 import java.util.Date;
 import java.util.List;

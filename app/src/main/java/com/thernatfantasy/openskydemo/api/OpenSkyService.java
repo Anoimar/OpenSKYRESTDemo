@@ -1,10 +1,8 @@
-package com.thernatfantasy.openskydemo;
+package com.thernatfantasy.openskydemo.api;
 
 import com.thernatfantasy.openskydemo.json.FlightData;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 /**
@@ -18,8 +16,4 @@ public interface OpenSkyService {
     @GET("api/states/all")
     Call<FlightData>flightData();
 
-    Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(serviceBaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build();
 }

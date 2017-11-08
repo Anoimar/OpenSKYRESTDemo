@@ -7,8 +7,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.TypeConverters;
 
-import com.thernatfantasy.openskydemo.FlightInfo;
-
 import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;

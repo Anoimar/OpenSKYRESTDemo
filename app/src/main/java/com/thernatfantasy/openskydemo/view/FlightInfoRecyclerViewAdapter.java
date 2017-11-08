@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
-import com.thernatfantasy.openskydemo.FlightInfo;
+import com.thernatfantasy.openskydemo.database.FlightInfo;
 import com.thernatfantasy.openskydemo.R;
 import com.thernatfantasy.openskydemo.countries.CountryFlagUrlProvider;
 
