@@ -1,13 +1,17 @@
-package com.thernatfantasy.openskydemo.database;
+package com.thernatfantasy.openskydemo.viewmodel;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Transformations;
 import android.arch.lifecycle.ViewModel;
+import android.util.Log;
 
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
+import com.thernatfantasy.openskydemo.database.FlightInfo;
 import com.thernatfantasy.openskydemo.repository.FlightInfoRepository;
 
 
 import java.util.List;
-
 import javax.inject.Inject;
 
 /**
@@ -22,13 +26,12 @@ public class FlightDataListModel extends ViewModel {
     @Inject
     public FlightDataListModel(FlightInfoRepository repository) {
         this.flightInfoRepository = repository;
-        flightInfoList = flightInfoRepository.getFlightInfo();
     }
 
 
-    public LiveData<List<FlightInfo>> getFlightInfoList() {
+    public LiveData<List<FlightInfo>> getFlightInfoList(String query) {
+        flightInfoList = flightInfoRepository.getFlightInfo(query);
         return flightInfoList;
     }
-
 
 }

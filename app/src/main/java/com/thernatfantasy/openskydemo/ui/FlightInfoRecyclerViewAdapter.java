@@ -1,4 +1,4 @@
-package com.thernatfantasy.openskydemo.view;
+package com.thernatfantasy.openskydemo.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

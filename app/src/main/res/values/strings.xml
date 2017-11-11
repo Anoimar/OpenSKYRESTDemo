@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">OpenSKYDemo</string>
+    <string name="search">Country</string>
 </resources>

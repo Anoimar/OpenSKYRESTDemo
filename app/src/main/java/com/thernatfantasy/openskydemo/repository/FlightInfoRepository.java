@@ -31,13 +31,14 @@ public class FlightInfoRepository {
     public FlightInfoRepository(OpenSkyService openSkyService, FlightInfoDao flightInfoDao) {
         this.openSkyService = openSkyService;
         this.flightInfoDao = flightInfoDao;
+
     }
 
 
-    public LiveData<List<FlightInfo>> getFlightInfo() {
+    public LiveData<List<FlightInfo>> getFlightInfo(String query) {
         getFlightDataFromOpenSkyService();
-        return flightInfoDao.getFiveHundredMostRecentFlightInfosNotOlderThan(String.valueOf(new TimeProvider().getTimeOneHourAgo()));
-
+        return flightInfoDao.getFiveHundredMostRecentFlightInfosNotOlderThan(String.valueOf(new TimeProvider().getTimeOneHourAgo()),
+                "%"+query+"%");
     }
 
     private void getFlightDataFromOpenSkyService(){
@@ -68,4 +69,5 @@ public class FlightInfoRepository {
             return null;
         }
     }
+
 }

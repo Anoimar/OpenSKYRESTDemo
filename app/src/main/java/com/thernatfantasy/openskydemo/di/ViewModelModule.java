@@ -3,7 +3,7 @@ package com.thernatfantasy.openskydemo.di;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
-import com.thernatfantasy.openskydemo.database.FlightDataListModel;
+import com.thernatfantasy.openskydemo.viewmodel.FlightDataListModel;
 import com.thernatfantasy.openskydemo.viewmodel.FlightInfoDataListModelFactory;
 
 import dagger.Binds;

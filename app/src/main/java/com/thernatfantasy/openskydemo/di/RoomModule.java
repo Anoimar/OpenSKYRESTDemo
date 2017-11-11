@@ -1,10 +1,12 @@
-package com.thernatfantasy.openskydemo.database;
+package com.thernatfantasy.openskydemo.di;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.migration.Migration;
 
 import com.thernatfantasy.openskydemo.OpenSkyDemoApplication;
+import com.thernatfantasy.openskydemo.database.FlightDatabase;
+import com.thernatfantasy.openskydemo.database.FlightInfoDao;
 import com.thernatfantasy.openskydemo.database.migrations.Database1To2Migration;
 
 import javax.inject.Singleton;

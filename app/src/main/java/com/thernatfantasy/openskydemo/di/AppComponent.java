@@ -1,7 +1,6 @@
 package com.thernatfantasy.openskydemo.di;
 
 import com.thernatfantasy.openskydemo.OpenSkyDemoApplication;
-import com.thernatfantasy.openskydemo.database.RoomModule;
 
 import javax.inject.Singleton;
 
